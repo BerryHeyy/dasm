@@ -36,6 +36,32 @@ In this example we make a program with a function which can be called to with th
 
 Let's first look at the `STR` label. As you may know, labels define memory addresses in text form. These labels can be jumped to or can be moved into registers in the form of memory addresses. This label defines the memory address of the first byte of memory of the hello world string; this is because the pseudeo-instruction `db` is used right after it. `db` writes literals into memory: the string literal "Hello" gets chopped into its constituent char-bytes and gets stored in memory. Next up the byte-literal `0x20` gets stored into memory, `0x20` represents the space character in UTF8. As we can see, the string is terminated with a `0x00` byte literal.
 
+### Fibonacci Sequence
+
+```x86asm
+&
+mov dx 0x0A   # Use ten iterations
+mov ax 0x00
+mov bx 0x01
+
+LOOP:
+  mov cx 0x00
+  add cx ax
+  add cx bx
+  
+  prtn cx
+  prtc 0x20  # Print a space
+  
+  mov ax bx
+  mov bx cx
+
+  dec dx
+  cmp dx 0x00
+  jne LOOP
+```
+
+The code above prints out the Fibonacci sequence. The Fibonacci sequence is a sequence where each number is the addition of the two previous numbers; thus: `0 1 2 3 5 8 13 21 34 55 89 ... etc`.
+
 ## Environments
 You can imagine environments as a standalone CPU. Each time the user sends assembly code, a new environment gets created and populated with the given information.
 ### Architecture

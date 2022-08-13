@@ -78,6 +78,7 @@ public class CPU
                 "add", new Dictionary<ADDRESSING_MODES, byte>()
                 {
                     { ADDRESSING_MODES.IMMEDIATE, 0x0F },
+                    { ADDRESSING_MODES.REGISTRY, 0x16}             // <----- last changed.
                 }
             },
             {

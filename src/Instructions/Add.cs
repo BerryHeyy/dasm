@@ -3,9 +3,27 @@ class Add : InstructionBase
 {
     public override bool Compile(string line, ref MEM memory, ref CPU processor, ref ushort compilerPointer, string[] tokens, ref Dictionary<string, List<ushort>> labelReferences, ref ClientTasks clientTasks)
     {
+        
         if (Utility.DoesRegisterExist(tokens[1])) // Destination exists
         {
-            if (Utility.IsHexStringValid(tokens[2])) // Value is a number literal
+            if (Utility.DoesRegisterExist(tokens[2])) // Value is a register
+            {
+                int regBits = Utility.GetRegisterSize(CPU.registerEncoding[tokens[1]]);
+                int valueBits = Utility.GetRegisterSize(CPU.registerEncoding[tokens[2]]);
+
+                if (regBits >= valueBits)
+                {
+                    memory[compilerPointer++] = CPU.instructionOpCodes[tokens[0]][ADDRESSING_MODES.REGISTRY];
+                    memory[compilerPointer++] = CPU.registerEncoding[tokens[1]];
+                    memory[compilerPointer++] = CPU.registerEncoding[tokens[2]];
+                }
+                else
+                {
+                    clientTasks.consoleBuffer += Utility.MakePossibleOverflowException(line, valueBits, regBits);
+                    return false;
+                }
+            }
+            else if (Utility.IsHexStringValid(tokens[2])) // Value is a number literal
             {
                 int regBits = Utility.GetRegisterSize(CPU.registerEncoding[tokens[1]]);
                 int valueBits = Utility.GetBits(Convert.ToUInt64(tokens[2], 16));
@@ -51,6 +69,14 @@ class Add : InstructionBase
                 UInt64 val = Utility.LittleEndianByteArrayToInt(bytes.ToArray());
 
                 processor.SetRegisterValue(destinationEncoding, processor.getRegisterValue(destinationEncoding) + val);
+            }break;
+            case ADDRESSING_MODES.REGISTRY:
+            {
+                byte destinationEncoding = processor.ReadByte(memory);
+                byte valueEncoding = processor.ReadByte(memory);
+
+                processor.SetRegisterValue(
+                    destinationEncoding, processor.getRegisterValue(destinationEncoding) + processor.getRegisterValue(valueEncoding));
             }break;
             default: return false;
         }
