@@ -17,7 +17,7 @@ class Program
         client.Log += Log;
         client.MessageReceived += OnMessage;
 
-        string token = "ODgzNjI0NDg3NjU5MTM1MDE2.G4UNG0.2l8V6Xq9OlS1qJZIKdJYyGI8e1kC5pmHaKswjo";
+        string token = await GetToken();
 
         await client.LoginAsync(TokenType.Bot, token);
         await client.StartAsync();
@@ -93,5 +93,14 @@ class Program
         }
         Console.WriteLine(env.clientTasks.consoleBuffer);
         if (env.clientTasks.consoleBuffer.Length > 0) await env.channelSent.SendMessageAsync(env.clientTasks.consoleBuffer);
+    }
+
+    private async Task<string> GetToken()
+    {
+        if (File.Exists(".\\token.txt"))
+        {
+            return await File.ReadAllTextAsync(".\\token.txt");
+        }
+        else throw new Exception("Could not find token.txt");
     }
 }
