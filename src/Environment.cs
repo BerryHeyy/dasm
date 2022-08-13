@@ -18,7 +18,7 @@ class Environment
     {
         {"mov", new Mov()}, {"jmp", new Jmp()}, {"add", new Add()}, {"cmp", new Cmp()},
         {"call", new Call()}, {"jne", new Jne()}, {"ret", new Ret()}, {"prtc", new Prtc()},
-        {"jeq", new Jeq()}, {"prtn", new Prtn()}
+        {"jeq", new Jeq()}, {"prtn", new Prtn()}, {"dec", new Dec()}, {"inc", new Inc()}
     };
 
     public Environment(ISocketMessageChannel channelSent)

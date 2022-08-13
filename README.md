@@ -101,7 +101,7 @@ The CPU uses flags for logical operatios. These are the currently implemented fl
 |               |               |             |             |             |             |             |               |
 |:-------------:|:-------------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-------------:|
 |  [add](#add)  | [call](#call) | [cmp](#cmp) | [jmp](#jmp) | [jne](#jne) | [jeq](#jeq) | [mov](#mov) | [prtc](#prtc) |
-| [prtn](#prtn) |  [ret](#ret)  |             |             |             |             |             |               |
+| [prtn](#prtn) |  [ret](#ret)  | [dec](#dec) | [inc](#inc) |             |             |             |               |
 
 
 ### add
@@ -167,6 +167,17 @@ Example: `ret`
 
 > **Wanrning:** if `call` hasn't been called before, or if the `di` register has not been set manually before calling `ret`, the program counter will be set to 0, which is the beginning of the stack. This will result in a crash.
 
+### dec
+
+Decreases the value of the target operand by one.
+
+Example: `dec ax`
+
+### inc
+
+Increases the value of the target operand by one.
+
+Example: `inc ax`
 
 # Developers
 

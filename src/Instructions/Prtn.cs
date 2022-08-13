@@ -32,11 +32,13 @@ class Prtn : InstructionBase
             else
             {
                 clientTasks.consoleBuffer += Utility.MakePossibleOverflowException(line, valueBits, 8);
+                return false;
             }
         }
         else
         {
             clientTasks.consoleBuffer += Utility.MakeUndefinedArgumentException(line, tokens[1], 1);
+            return false;
         }
 
         return true;

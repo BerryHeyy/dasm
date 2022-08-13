@@ -93,6 +93,18 @@ public class CPU
                     { ADDRESSING_MODES.REGISTRY, 0x12 },
                     { ADDRESSING_MODES.REGISTRY_POINTER, 0x13 }
                 }
+            },
+            {
+                "dec", new Dictionary<ADDRESSING_MODES, byte>()
+                {
+                    {ADDRESSING_MODES.ABSOLUTE, 0x14}
+                }
+            },
+            {
+                "inc", new Dictionary<ADDRESSING_MODES, byte>()
+                {
+                    {ADDRESSING_MODES.ABSOLUTE, 0x15}
+                }
             }
         };
 
