@@ -1,7 +1,16 @@
 # Dasm
+
 ## _**Discord assembly** bot_
 
 Tired of restrictive bot commands? Want to have a command for every one of your needs? Unlimited freedom? Look no further! With **dasm** you can create any command straight from the discord text bar! Sounds too good to be true? Well, its true! All you need is a good understanding of low level CPU architecture and a pretty good understanding of NASM-like assembly and you're good to go!
+
+## Table of Contents
+1. [What is dasm?](#what-is-dasm)
+2. [Examples](#examples)
+3. [Environments](#environments)
+4. [Instructions](#instructions)
+5. [Developers](#developers)
+
 
 ## What is dasm?
 On a more serious note, dasm, short for discord assembly, is a bot that interprets user written assembly code and executes it in things called "environments". Environments have access to the servers ins-and-outs. Like, creating channels, kicking users, removing messages in a given channel, sending messages in a given channel, banning users, creating roles, adding roles to members, etc. Basically, anything a regular old bot can do. The server owner can configure environments to allow or disallow things users can access inside an environment.
