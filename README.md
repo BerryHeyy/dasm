@@ -2,6 +2,8 @@
 
 ## _**Discord assembly** bot_
 
+> dasm is a C# port of my other project, [discord-asm](https://github.com/BerryHeyy/discord-asm).
+
 Tired of restrictive bot commands? Want to have a command for every one of your needs? Unlimited freedom? Look no further! With **dasm** you can create any command straight from the discord text bar! Sounds too good to be true? Well, its true! All you need is a good understanding of low level CPU architecture and a pretty good understanding of NASM-like assembly and you're good to go!
 
 ## Table of Contents
